@@ -1,41 +1,40 @@
 import turtle
 import time
 import random
-import tkinter as tk 
+import tkinter as tk
 from tkinter import simpledialog, messagebox
-#Definir función para pedir el nombre al jugador
 
+# Función para preguntar el nombre del jugador
 def get_player_name():
-    root= tk.Tk()
-    root.withdraw()
-    playername= simpledialog.askstring("Juagador", "¿Cual es tu nombre", parent=root)
-    if not playername:
-        playername= "Jugador"
-    return playername
+    root = tk.Tk()
+    root.withdraw()  # Ocultar la ventana principal de tkinter
+    player_name = simpledialog.askstring("Jugador", "¿Cuál es tu nombre?", parent=root)
+    if not player_name:
+        player_name = "Jugador"
+    return player_name
 
-#Variables globales
+# Variables globales
 delay = 0.1
 score = 0
 high_score = 0
-player_name = get_player_name()
+player_name = get_player_name()  # Llamamos a la función para obtener el nombre
 
-#Configuración de la pantalla del Juego
-
-win=turtle.Screen()
-win.title("JUEGO DE LA SERPIENTE - Turtle")
+# Configuración de la ventana del juego
+win = turtle.Screen()
+win.title("Snake Game - Turtle")
 win.bgcolor("black")
 win.setup(width=600, height=600)
 win.tracer(0)
 
 # Coordenadas para colisión con las paredes (ajustadas para ampliar el área de colisión)
-border_x = 600  # Aumentamos el límite horizontal
-border_y = 600  # Aumentamos el límite vertical
+border_x = 350  # Aumentamos el límite horizontal
+border_y = 350  # Aumentamos el límite vertical
 
 # Snake (cabeza)
 snake = turtle.Turtle()
 snake.speed(0)
-snake.shape("circle") 
-snake.color("lime")  
+snake.shape("circle")  # Cambiado a círculo
+snake.color("lime")  # Color verde brillante
 snake.penup()
 snake.goto(0, 0)
 snake.direction = "stop"
@@ -43,7 +42,7 @@ snake.direction = "stop"
 # Comida
 food = turtle.Turtle()
 food.speed(0)
-food.shape("square")  #
+food.shape("square")  # Forma cuadrada para la comida
 food.color("red")
 food.penup()
 
@@ -103,7 +102,6 @@ def go_right():
         snake.direction = "right"
 
 # Controles del teclado
-
 win.listen()
 win.onkey(go_up, "Up")
 win.onkey(go_down, "Down")
@@ -152,7 +150,7 @@ def start_game():
     while True:
         win.update()
 
-        # Colisión con los bordes 
+        # Colisión con los bordes (ajustado según el tamaño de la ventana)
         if snake.xcor() > border_x or snake.xcor() < -border_x or snake.ycor() > border_y or snake.ycor() < -border_y:
             reset_game()
 
