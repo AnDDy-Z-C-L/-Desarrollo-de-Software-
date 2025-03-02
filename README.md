@@ -77,4 +77,7 @@ Maneja colisiones con los bordes y el propio cuerpo de la serpiente.
 Detecta cuándo la serpiente come comida, añade segmentos al cuerpo y aumenta la velocidad.
 Controla la actualización de la pantalla y la lógica de pausas con time.sleep(delay).
 
+# FECHA:
+
+28/02/25
 
